@@ -198,6 +198,7 @@ noise = SubResource("FastNoiseLite_sc4t8")
 script = ExtResource("1_6xmxd")
 camera_path = NodePath("../Player/Camera2D")
 generation_params = SubResource("Resource_ai45w")
+render_distance = Vector2(4800, 2700)
 metadata/_custom_type_script = "uid://uglqrmvi70l4"
 
 [node name="Forest" type="TileMapLayer" parent="ProceduralGenerator"]
