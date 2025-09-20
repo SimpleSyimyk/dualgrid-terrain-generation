@@ -1,39 +1,28 @@
 extends TileMapLayer
 class_name DualGrid
 
-
+const OFFSETS: Array[Vector2i] = [
+	Vector2i(-1, -1),
+	Vector2i( 0, -1),
+	Vector2i(-1,  0),
+	Vector2i( 0,  0),
+]
+const MASKS: Array[int] = [0b0001, 0b0010, 0b0100, 0b1000]
 
 var load_cells: Dictionary = {}
 
-func auto_erase(coords: Vector2) -> void:
+func auto_erase(coords: Vector2i) -> void:
 	if load_cells.has(coords): 
-		var cell_coords: Array[Vector2] = [
-			Vector2(1, 1),
-			Vector2(0, 1),
-			Vector2(1, 0),
-			Vector2(0, 0)]
-			
-		for coord in cell_coords:
-			var erase_coord: Vector2 = coords - coord
-			erase_cell(erase_coord)
-			
+		for coord in OFFSETS:
+			erase_cell(coords + coord)
 		load_cells.erase(coords)
 
-func auto_tile(coords: Vector2) -> void:
-	var corners := {
-		coords - Vector2(1, 1): 0b0001,
-		coords - Vector2(0, 1): 0b0010,
-		coords - Vector2(1, 0): 0b0100,
-		coords - Vector2(0, 0): 0b1000,
-	}
-	for pos in corners:
-		_apply_cell(pos, corners[pos])
-
-func _apply_cell(coords: Vector2, value: int) -> void:
-	if not load_cells.has(coords):
-		load_cells[coords] = value
-	else:
-		load_cells[coords] |= value
-	var x: int = load_cells[coords] - 1
-
-	set_cell(coords, 0, Vector2(x, 0), 0)
+func auto_tile(coords: Vector2i) -> void:
+	var lc := load_cells
+	for i in 4:
+		var pos := coords + OFFSETS[i]
+		var mask := MASKS[i]
+		var prev : int = lc.get(pos, 0)
+		var value : int = prev | mask
+		lc[pos] = value
+		set_cell(pos, 0, Vector2i(value - 1, 0), 0)
