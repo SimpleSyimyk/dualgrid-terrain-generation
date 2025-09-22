@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=3 uid="uid://bupn6hexv8ueu"]
+
+[ext_resource type="Script" uid="uid://uglqrmvi70l4" path="res://lib/generator_system/procedural_generator.gd" id="1_6xmxd"]
+[ext_resource type="Script" uid="uid://baycg00vp1ict" path="res://example/world/world.gd" id="1_h5o24"]
+[ext_resource type="Resource" uid="uid://ck6m3pqft8dxc" path="res://example/world/generator_res.tres" id="3_72y3e"]
+[ext_resource type="Script" uid="uid://b533gnusscl40" path="res://lib/generator_system/component/dual_grid.gd" id="4_fn3g3"]
+[ext_resource type="TileSet" uid="uid://cnmt3m74gbe3c" path="res://example/tile/tilesets/forest.tres" id="5_uv548"]
+[ext_resource type="TileSet" uid="uid://b4iue8pa386d8" path="res://example/tile/tilesets/desert.tres" id="7_aylt0"]
+[ext_resource type="TileSet" uid="uid://cu3fl3x5nd7kh" path="res://example/tile/tilesets/swamp.tres" id="8_uv548"]
+[ext_resource type="TileSet" uid="uid://baa5lhhgsd7fs" path="res://example/tile/tilesets/snowlands.tres" id="9_uv548"]
+[ext_resource type="TileSet" uid="uid://sn1khfrq5ut3" path="res://example/tile/tilesets/lake.tres" id="10_uv548"]
+[ext_resource type="PackedScene" uid="uid://bsjxsg0ag0xuh" path="res://example/player/player.tscn" id="11_ov2xu"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sc4t8"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_h5o24")
+noise = SubResource("FastNoiseLite_sc4t8")
+
+[node name="ProceduralGenerator" type="Node2D" parent="."]
+script = ExtResource("1_6xmxd")
+camera_path = NodePath("../Player/Camera2D")
+resource_world_generator = ExtResource("3_72y3e")
+render_radius = Vector2i(20, 10)
+frecuency = 0.01
+metadata/_custom_type_script = "uid://uglqrmvi70l4"
+
+[node name="forest" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("5_uv548")
+script = ExtResource("4_fn3g3")
+metadata/_custom_type_script = "uid://b533gnusscl40"
+
+[node name="desert" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("7_aylt0")
+script = ExtResource("4_fn3g3")
+metadata/_custom_type_script = "uid://b533gnusscl40"
+
+[node name="swamp" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("8_uv548")
+script = ExtResource("4_fn3g3")
+metadata/_custom_type_script = "uid://b533gnusscl40"
+
+[node name="snowlands" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("9_uv548")
+script = ExtResource("4_fn3g3")
+metadata/_custom_type_script = "uid://b533gnusscl40"
+
+[node name="lake" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("10_uv548")
+script = ExtResource("4_fn3g3")
+metadata/_custom_type_script = "uid://b533gnusscl40"
+
+[node name="Player" parent="." instance=ExtResource("11_ov2xu")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
