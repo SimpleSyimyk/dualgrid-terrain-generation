@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="GeneratorResource" load_steps=8 format=3 uid="uid://ck6m3pqft8dxc"]
+
+[ext_resource type="Script" uid="uid://csiwgrs4mt3f" path="res://lib/generator_system/resurses/dual_grid_resource.gd" id="1_020y8"]
+[ext_resource type="Script" uid="uid://cftsp7vo1txrv" path="res://lib/generator_system/resurses/procedural_generator_resource.gd" id="2_knpnb"]
+
+[sub_resource type="Resource" id="Resource_uv548"]
+script = ExtResource("1_020y8")
+params = Dictionary[String, float]({
+"heigth": 5.0,
+"temperature": 10.0,
+"wet": 0.0
+})
+path = NodePath("desert")
+heigth = 5.0
+temperature = 10.0
+wet = 0.0
+
+[sub_resource type="Resource" id="Resource_aylt0"]
+script = ExtResource("1_020y8")
+params = Dictionary[String, float]({
+"heigth": 5.0,
+"temperature": 5.0,
+"wet": 5.0
+})
+path = NodePath("forest")
+heigth = 5.0
+temperature = 5.0
+wet = 5.0
+
+[sub_resource type="Resource" id="Resource_to8sy"]
+script = ExtResource("1_020y8")
+params = Dictionary[String, float]({
+"heigth": 0.0,
+"temperature": 1.0,
+"wet": 10.0
+})
+path = NodePath("lake")
+heigth = 0.0
+temperature = 1.0
+wet = 10.0
+
+[sub_resource type="Resource" id="Resource_2fxqn"]
+script = ExtResource("1_020y8")
+params = Dictionary[String, float]({
+"heigth": 10.0,
+"temperature": 10.0,
+"wet": 10.0
+})
+path = NodePath("snowlands")
+heigth = 10.0
+temperature = 10.0
+wet = 10.0
+
+[sub_resource type="Resource" id="Resource_w6ekp"]
+script = ExtResource("1_020y8")
+params = Dictionary[String, float]({
+"heigth": 2.0,
+"temperature": 5.0,
+"wet": 10.0
+})
+path = NodePath("swamp")
+heigth = 2.0
+temperature = 5.0
+wet = 10.0
+
+[resource]
+script = ExtResource("2_knpnb")
+params_names = Array[String](["heigth", "wet", "temperature"])
+biomes_names = Array[String](["forest", "desert", "swamp", "snowland", "lake"])
+biom_forest = SubResource("Resource_aylt0")
+biom_desert = SubResource("Resource_uv548")
+biom_swamp = SubResource("Resource_w6ekp")
+biom_snowland = SubResource("Resource_2fxqn")
+biom_lake = SubResource("Resource_to8sy")
+metadata/_custom_type_script = "uid://cftsp7vo1txrv"
