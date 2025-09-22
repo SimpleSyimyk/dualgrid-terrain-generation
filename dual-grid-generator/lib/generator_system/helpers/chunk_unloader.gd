@@ -40,6 +40,7 @@ func process_batch():
 	for i in range(current_index, end_index):
 		var target_chunk_coords: Vector2i = biomes_keys[i]
 		if target_chunk_coords in to_load_chunk: continue
+		if not loaded_chunks.has(target_chunk_coords): continue
 		var biome_name: String = loaded_chunks[target_chunk_coords]
 		loaded_chunks.erase(target_chunk_coords)
 		biome_nodes[biome_name].auto_erase(target_chunk_coords)
