@@ -1,4 +1,4 @@
-# Procedural World Generator for Godot 4.5.stable
+# Procedural World Generator for Godot 4.5
 
 This project provides a procedural world generation system for Godot 4.5 using a **chunk-based approach**, **FastNoiseLite**, and **biome management** with dynamic loading and unloading of chunks.
 
