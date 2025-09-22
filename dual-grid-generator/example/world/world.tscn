@@ -1,194 +1,17 @@
-[gd_scene load_steps=29 format=3 uid="uid://bupn6hexv8ueu"]
+[gd_scene load_steps=12 format=3 uid="uid://bupn6hexv8ueu"]
 
-[ext_resource type="Script" uid="uid://uglqrmvi70l4" path="res://lib/procedural_generator.gd" id="1_6xmxd"]
+[ext_resource type="Script" uid="uid://uglqrmvi70l4" path="res://lib/generator_system/procedural_generator.gd" id="1_6xmxd"]
 [ext_resource type="Script" uid="uid://baycg00vp1ict" path="res://example/world/world.gd" id="1_h5o24"]
-[ext_resource type="Script" uid="uid://csiwgrs4mt3f" path="res://lib/dual_grid/dual_grid_resource.gd" id="3_fyhu2"]
-[ext_resource type="Script" uid="uid://cftsp7vo1txrv" path="res://lib/procedural_generator_resource.gd" id="3_mmdvd"]
-[ext_resource type="Script" uid="uid://b533gnusscl40" path="res://lib/dual_grid/dual_grid.gd" id="4_fn3g3"]
-[ext_resource type="Texture2D" uid="uid://cn5qc45odk5jk" path="res://example/tile/grass.png" id="5_ov2xu"]
-[ext_resource type="Texture2D" uid="uid://c4ydkp8qntm7w" path="res://example/tile/sand.png" id="7_mad0u"]
-[ext_resource type="Texture2D" uid="uid://ntk82jkava36" path="res://example/tile/black.png" id="8_ocfjn"]
-[ext_resource type="Texture2D" uid="uid://bc4x6qs68fv0c" path="res://example/tile/snow.png" id="9_dqqhb"]
-[ext_resource type="Texture2D" uid="uid://c8ruakhxdy7rn" path="res://example/tile/water.png" id="10_b2suy"]
+[ext_resource type="Resource" uid="uid://ck6m3pqft8dxc" path="res://example/world/generator_res.tres" id="3_72y3e"]
+[ext_resource type="Script" uid="uid://b533gnusscl40" path="res://lib/generator_system/component/dual_grid.gd" id="4_fn3g3"]
+[ext_resource type="TileSet" uid="uid://cnmt3m74gbe3c" path="res://example/tile/tilesets/forest.tres" id="5_uv548"]
+[ext_resource type="TileSet" uid="uid://b4iue8pa386d8" path="res://example/tile/tilesets/desert.tres" id="7_aylt0"]
+[ext_resource type="TileSet" uid="uid://cu3fl3x5nd7kh" path="res://example/tile/tilesets/swamp.tres" id="8_uv548"]
+[ext_resource type="TileSet" uid="uid://baa5lhhgsd7fs" path="res://example/tile/tilesets/snowlands.tres" id="9_uv548"]
+[ext_resource type="TileSet" uid="uid://sn1khfrq5ut3" path="res://example/tile/tilesets/lake.tres" id="10_uv548"]
 [ext_resource type="PackedScene" uid="uid://bsjxsg0ag0xuh" path="res://example/player/player.tscn" id="11_ov2xu"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sc4t8"]
-
-[sub_resource type="Resource" id="Resource_h8lre"]
-script = ExtResource("3_fyhu2")
-params = Dictionary[String, float]({
-"heigth": 1.0,
-"temperature": 10.0
-})
-path = NodePath("Desert")
-heigth = 1.0
-temperature = 10.0
-
-[sub_resource type="Resource" id="Resource_ysn08"]
-script = ExtResource("3_fyhu2")
-params = Dictionary[String, float]({
-"heigth": 5.0,
-"temperature": 5.0
-})
-path = NodePath("Forest")
-heigth = 5.0
-temperature = 5.0
-
-[sub_resource type="Resource" id="Resource_m0cxt"]
-script = ExtResource("3_fyhu2")
-params = Dictionary[String, float]({
-"heigth": 0.0,
-"temperature": 2.0
-})
-path = NodePath("Lake")
-heigth = 0.0
-temperature = 2.0
-
-[sub_resource type="Resource" id="Resource_j34ew"]
-script = ExtResource("3_fyhu2")
-params = Dictionary[String, float]({
-"heigth": 10.0,
-"temperature": 0.0
-})
-path = NodePath("Snowland")
-heigth = 10.0
-temperature = 0.0
-
-[sub_resource type="Resource" id="Resource_p2iis"]
-script = ExtResource("3_fyhu2")
-params = Dictionary[String, float]({
-"heigth": 0.0,
-"temperature": 5.0
-})
-path = NodePath("Swamp")
-heigth = 0.0
-temperature = 5.0
-
-[sub_resource type="Resource" id="Resource_ai45w"]
-script = ExtResource("3_mmdvd")
-param_names = Array[String](["heigth", "temperature"])
-biome_names = Array[String](["Forest", "Desert", "Swamp", "Snowland", "Lake"])
-biom_Forest = SubResource("Resource_ysn08")
-biom_Desert = SubResource("Resource_h8lre")
-biom_Swamp = SubResource("Resource_p2iis")
-biom_Snowland = SubResource("Resource_j34ew")
-biom_Lake = SubResource("Resource_m0cxt")
-metadata/_custom_type_script = "uid://cftsp7vo1txrv"
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aysyn"]
-texture = ExtResource("5_ov2xu")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_o1net"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_aysyn")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ljsx"]
-texture = ExtResource("7_mad0u")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_gi7ib"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_3ljsx")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0pnie"]
-texture = ExtResource("8_ocfjn")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_llyeo"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_0pnie")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2tavo"]
-texture = ExtResource("9_dqqhb")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_k8wd0"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_2tavo")
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7vgi"]
-texture = ExtResource("10_b2suy")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_inp7a"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_j7vgi")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_h5o24")
@@ -197,36 +20,36 @@ noise = SubResource("FastNoiseLite_sc4t8")
 [node name="ProceduralGenerator" type="Node2D" parent="."]
 script = ExtResource("1_6xmxd")
 camera_path = NodePath("../Player/Camera2D")
-generation_params = SubResource("Resource_ai45w")
-render_distance = Vector2(4800, 2700)
+resource_world_generator = ExtResource("3_72y3e")
+render_radius = Vector2i(20, 10)
+frecuency = 0.01
 metadata/_custom_type_script = "uid://uglqrmvi70l4"
 
-[node name="Forest" type="TileMapLayer" parent="ProceduralGenerator"]
-tile_set = SubResource("TileSet_o1net")
+[node name="forest" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("5_uv548")
 script = ExtResource("4_fn3g3")
 metadata/_custom_type_script = "uid://b533gnusscl40"
 
-[node name="Desert" type="TileMapLayer" parent="ProceduralGenerator"]
-tile_set = SubResource("TileSet_gi7ib")
+[node name="desert" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("7_aylt0")
 script = ExtResource("4_fn3g3")
 metadata/_custom_type_script = "uid://b533gnusscl40"
 
-[node name="Swamp" type="TileMapLayer" parent="ProceduralGenerator"]
-tile_set = SubResource("TileSet_llyeo")
+[node name="swamp" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("8_uv548")
 script = ExtResource("4_fn3g3")
 metadata/_custom_type_script = "uid://b533gnusscl40"
 
-[node name="Snowland" type="TileMapLayer" parent="ProceduralGenerator"]
-tile_set = SubResource("TileSet_k8wd0")
+[node name="snowlands" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("9_uv548")
 script = ExtResource("4_fn3g3")
 metadata/_custom_type_script = "uid://b533gnusscl40"
 
-[node name="Lake" type="TileMapLayer" parent="ProceduralGenerator"]
-tile_set = SubResource("TileSet_inp7a")
+[node name="lake" type="TileMapLayer" parent="ProceduralGenerator"]
+tile_set = ExtResource("10_uv548")
 script = ExtResource("4_fn3g3")
 metadata/_custom_type_script = "uid://b533gnusscl40"
 
 [node name="Player" parent="." instance=ExtResource("11_ov2xu")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.5, 0.5)
