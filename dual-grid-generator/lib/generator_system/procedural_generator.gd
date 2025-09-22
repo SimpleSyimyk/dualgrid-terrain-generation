@@ -112,7 +112,6 @@ func _position_to_coords(world_position: Vector2) -> Vector2i:
 
 
 
-#region Initialize Functions
 func _initial_camera() -> void:
 	camera = get_node_or_null(camera_path)
 	previous_camera_position = Vector2i(camera.position) + Vector2i(1,1)
@@ -130,7 +129,6 @@ func _initialize_biomes() -> void:
 	
 	bioms_params_cache = resource_world_generator.get_biomes_params_cache()
 
-#func get_biomes_packed_params()
 
 func _get_tile_nodes_dict() -> Dictionary[String, DualGrid]:
 	var pathes: Dictionary[String, NodePath] = resource_world_generator.get_boimes_pathes()
@@ -144,5 +142,3 @@ func _get_tile_nodes_dict() -> Dictionary[String, DualGrid]:
 		nodes[biome_name] = biome_node
 	
 	return nodes
-
-#endregion

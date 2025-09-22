@@ -1,5 +1,3 @@
-res://lib/component/dual_grid.gd
-res://lib/system/helpers/chunk_unloader.gd
 res://example/world/world.tscn
 res://example/world/generator_res.tres
 res://example/tile/tilesets/forest.tres
@@ -7,7 +5,5 @@ res://example/tile/tilesets/desert.tres
 res://example/tile/tilesets/swamp.tres
 res://example/tile/tilesets/snowlands.tres
 res://example/tile/tilesets/lake.tres
-res://lib/system/helpers/chunk_loader.gd
-res://example/player/player.tscn
-res://lib/generator_system/component/dual_grid.gd
+res://lib/generator_system/helpers/chunk_loader.gd
 res://lib/generator_system/procedural_generator.gd
